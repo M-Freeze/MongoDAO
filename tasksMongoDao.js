@@ -62,7 +62,7 @@ exports.delete = function(id) {
 exports.list = function(isDone) {
   mongo.connect(URL, function(err, db) {
     if (err) throw err;
-    return db.collection('tasks').find({done: isDone}, function(err, result) {
+    return db.collection('tasks').find({done:{$eq : isDone}}, function(err, result) {
       if (err) throw err;
       console.log('in list()');
       console.log(result);
